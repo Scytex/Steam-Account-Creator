@@ -58,6 +58,7 @@
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // InputDialog
             // 
@@ -69,6 +70,8 @@
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.lblError);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "InputDialog";
             this.ShowInTaskbar = false;
             this.Text = "Update Info";
