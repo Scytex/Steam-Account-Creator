@@ -178,7 +178,7 @@ namespace SteamAccCreator.Web
             _request.AddParameter("count", "1");
             _request.AddParameter("lt", "0");
 
-            response = _client.Execute(_request);
+            var response = _client.Execute(_request);
             _request.Parameters.Clear();
 
             dynamic jsonResponse = JsonConvert.DeserializeObject(response.Content);
