@@ -60,7 +60,7 @@ namespace SteamAccCreator.Web
 
             if (!response.IsSuccessful)
             {
-                status = "HTTP Request failed";
+                status = Error.HTTP_FAILED;
                 return false;
             }
 
@@ -70,14 +70,14 @@ namespace SteamAccCreator.Web
 
             if (!bCaptchaMatches)
             {
-                status = "Captcha wrong";
+                status = Error.WRONG_CAPTCHA;
                 return false;
             }
 
             if (!bEmailAvail)
             {
                 //seems to always return true even if email is already in use
-                status = "Email error";
+                status = Error.EMAIL_ERROR;
                 return false;
             }
 
@@ -96,16 +96,16 @@ namespace SteamAccCreator.Web
                 switch (jsonResponse.success)
                 {
                     case 62:
-                        status = "This e-mail address must be different from your own.";
+                        status = Error.SIMILIAR_MAIL;
                         break;
                     case 13:
-                        status = "Please enter a valid email address.";
+                        status = Error.INVALID_MAIL;
                         break;
                     case 17:
-                        status = "It appears you've entered a disposable email address, or are using an email provider that cannot be used on Steam. Please provide a different email address.";
+                        status = Error.TRASH_MAIL;
                         break;
                     default:
-                        status = "Unknown error @ CreateAccount()";
+                        status = Error.UNKNOWN;
                         break;
                 }
                 return false;
@@ -134,20 +134,20 @@ namespace SteamAccCreator.Web
 
                 case "42":
                 case "29":
-                    status = "There was an error with your registration, please try again.";
+                    status = Error.REGISTRATION;
                     break;
 
                 case "27":
-                    status = "You've waited too long to verify your email. Please try creating your account and verifying your email again.";
+                    status = Error.TIMEOUT;
                     break;
 
                 case "36":
                 case "10":
-                    status = "Mail not verified";
+                    status = Error.MAIL_UNVERIFIED;
                     break;
 
                 default:
-                    status = "Unknown error @ CheckEmailVerified()";
+                    status = Error.UNKNOWN;
                     break;
             }
             return false;
@@ -155,13 +155,6 @@ namespace SteamAccCreator.Web
 
         public bool CompleteSignup(string alias, string password, ref string status)
         {
-            /*  not needed
-            _client.BaseUrl = new Uri(CompleteSignupUri + _sessionId);
-            _request.Method = Method.GET;
-
-            var response = _client.Execute(_request);
-            */
-
             if (!CheckAlias(alias, ref status))
                 return false;
             if (!CheckPassword(password, alias, ref status))
@@ -200,7 +193,7 @@ namespace SteamAccCreator.Web
 
             if (jsonResponse.bAvailable == "true")
                 return true;
-            status = "Alias already in use";
+            status = Error.ALIAS_UNAVAILABLE;
             return false;
         }
 
@@ -217,7 +210,7 @@ namespace SteamAccCreator.Web
 
             if (jsonResponse.bAvailable == "true")
                 return true;
-            status = "Password not safe enough";
+            status = Error.PASSWORD_UNSAFE;
             return false;
         }
 
