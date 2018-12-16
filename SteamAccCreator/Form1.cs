@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SteamAccCreator.File;
@@ -13,6 +14,7 @@ namespace SteamAccCreator
         private string _pass = string.Empty;
         private string _mail = string.Empty;
         private string _captcha = string.Empty;
+        private const string Provider = "@xitroo.de";
 
         public Form1()
         {
@@ -22,29 +24,57 @@ namespace SteamAccCreator
         private readonly HttpHandler _httpHandler = new HttpHandler();
         private readonly FileManager _fileManager = new FileManager();
 
-        private void BtnCreateAccount_Click(object sender, EventArgs e)
+        private async void BtnCreateAccount_Click(object sender, EventArgs e)
         {
             _alias = txtAlias.Text;
             _pass = txtPass.Text;
             _mail = txtEmail.Text;
+            if (chkRandomMail.Checked)
+                _mail = GetRandomString(12) + Provider;
+            if (chkRandomAlias.Checked)
+                _alias = GetRandomString(12);
+            if (chkRandomPass.Checked)
+                _pass = System.Web.Security.Membership.GeneratePassword(12, 4);
+
+            MessageBox.Show(_mail);
+
+            for (var i = 0; i < nmbrAmountAccounts.Value; i++)
+            {
+                
+            }
+
             _status = "Creating account...";
             UpdateStatus();
 
-
-            //Create account using mail
             CreateAccount();
-
 
             //TODO Verify mail
             VerifyMail();
 
-            CheckIfMailIsVerified();
+            while (!CheckIfMailIsVerified())
+            {
+                UpdateStatus();
+                await Task.Delay(1000);
+            }
             UpdateStatus();
 
             FinishCreation();
             UpdateStatus();
 
             WriteAccountIntoFile();
+        }
+
+        private string GetRandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[length];
+            var random = new Random();
+
+            for (var i = 0; i < length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+            return new string(stringChars);
         }
 
         private void CreateAccount()
@@ -70,13 +100,9 @@ namespace SteamAccCreator
             //TODO
         }
 
-        private async void CheckIfMailIsVerified()
+        private bool CheckIfMailIsVerified()
         {
-            while (!_httpHandler.CheckEmailVerified(ref _status))
-            {
-                UpdateStatus();
-                await Task.Delay(1000);
-            }
+            return _httpHandler.CheckEmailVerified(ref _status);
         }
 
         private void FinishCreation()
