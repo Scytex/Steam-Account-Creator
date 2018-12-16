@@ -40,14 +40,22 @@ namespace SteamAccCreator
             _status = "Creating account...";
             UpdateStatus();
 
-            //Ask for captcha
-            ShowCaptchaDialog();
 
             //Create account using mail
-            var success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
-            UpdateStatus();
-            if (!success)
-                return;
+            bool success;
+
+            do
+            {
+                ShowCaptchaDialog();
+                success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
+                UpdateStatus();
+
+                if (_status == Error.EMAIL_ERROR)
+                {
+                    return;
+                }
+            } while (!success);
+
 
             //TODO Verify mail
 
