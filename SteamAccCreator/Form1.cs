@@ -15,6 +15,7 @@ namespace SteamAccCreator
         private string _mail = string.Empty;
         private string _captcha = string.Empty;
         private const string Provider = "@xitroo.de";
+        private static Random random = new Random();
 
         public Form1()
         {
@@ -36,7 +37,7 @@ namespace SteamAccCreator
             if (chkRandomPass.Checked)
                 _pass = System.Web.Security.Membership.GeneratePassword(12, 4);
 
-            MessageBox.Show(_mail);
+            Clipboard.SetText(_mail);
 
             for (var i = 0; i < nmbrAmountAccounts.Value; i++)
             {
@@ -68,7 +69,6 @@ namespace SteamAccCreator
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var stringChars = new char[length];
-            var random = new Random();
 
             for (var i = 0; i < length; i++)
             {
