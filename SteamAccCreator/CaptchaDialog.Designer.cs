@@ -80,6 +80,7 @@
             this.Controls.Add(this.txtCaptcha);
             this.Controls.Add(this.boxCaptcha);
             this.Name = "CaptchaDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Enter Captcha";
             ((System.ComponentModel.ISupportInitialize)(this.boxCaptcha)).EndInit();
             this.ResumeLayout(false);

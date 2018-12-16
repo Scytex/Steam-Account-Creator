@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\Error.cs" />
     <Compile Include="Web\HttpHandler.cs" />
+    <Compile Include="Web\MailHandler.cs" />
     <EmbeddedResource Include="CaptchaDialog.resx">
       <DependentUpon>CaptchaDialog.cs</DependentUpon>
     </EmbeddedResource>

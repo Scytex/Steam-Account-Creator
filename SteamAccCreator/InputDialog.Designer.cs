@@ -74,6 +74,7 @@
             this.MinimizeBox = false;
             this.Name = "InputDialog";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Update Info";
             this.Load += new System.EventHandler(this.InputDialog_Load);
             this.ResumeLayout(false);

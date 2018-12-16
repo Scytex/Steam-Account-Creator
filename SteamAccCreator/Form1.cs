@@ -14,8 +14,7 @@ namespace SteamAccCreator
         private string _pass = string.Empty;
         private string _mail = string.Empty;
         private string _captcha = string.Empty;
-        private const string Provider = "@xitroo.de";
-        private static Random random = new Random();
+        private static readonly Random Random = new Random();
 
         public Form1()
         {
@@ -24,6 +23,7 @@ namespace SteamAccCreator
 
         private readonly HttpHandler _httpHandler = new HttpHandler();
         private readonly FileManager _fileManager = new FileManager();
+        private readonly MailHandler _mailHandler = new MailHandler();
 
         private async void BtnCreateAccount_Click(object sender, EventArgs e)
         {
@@ -31,13 +31,11 @@ namespace SteamAccCreator
             _pass = txtPass.Text;
             _mail = txtEmail.Text;
             if (chkRandomMail.Checked)
-                _mail = GetRandomString(12) + Provider;
+                _mail = GetRandomString(12) + MailHandler.Provider;
             if (chkRandomAlias.Checked)
                 _alias = GetRandomString(12);
             if (chkRandomPass.Checked)
                 _pass = System.Web.Security.Membership.GeneratePassword(12, 4);
-
-            Clipboard.SetText(_mail);
 
             for (var i = 0; i < nmbrAmountAccounts.Value; i++)
             {
@@ -49,14 +47,14 @@ namespace SteamAccCreator
 
             CreateAccount();
 
-            //TODO Verify mail
-            VerifyMail();
-
-            while (!CheckIfMailIsVerified())
+            var verified = false;
+            do
             {
+                VerifyMail();
+                verified = CheckIfMailIsVerified();
                 UpdateStatus();
-                await Task.Delay(1000);
-            }
+                await Task.Delay(2000);
+            } while (!verified);
             UpdateStatus();
 
             FinishCreation();
@@ -72,7 +70,7 @@ namespace SteamAccCreator
 
             for (var i = 0; i < length; i++)
             {
-                stringChars[i] = chars[random.Next(chars.Length)];
+                stringChars[i] = chars[Random.Next(chars.Length)];
             }
             return new string(stringChars);
         }
@@ -97,7 +95,14 @@ namespace SteamAccCreator
 
         private void VerifyMail()
         {
-            //TODO
+            if (chkAutoVerifyMail.Checked)
+            {
+                _mailHandler.ConfirmMail(_mail);
+            }
+            else
+            {
+                Clipboard.SetText(_mail);
+            }
         }
 
         private bool CheckIfMailIsVerified()
