@@ -28,7 +28,7 @@ namespace SteamAccCreator
 
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private void BtnConfirm_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();

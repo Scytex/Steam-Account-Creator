@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestSharp;
+using SteamAccCreator.File;
 using SteamAccCreator.Web;
 
 namespace SteamAccCreator
@@ -19,7 +20,8 @@ namespace SteamAccCreator
     {
         private string _status = string.Empty;
         private string _alias = string.Empty;
-        private string _password = string.Empty;
+        private string _pass = string.Empty;
+        private string _mail = string.Empty;
 
         public Form1()
         {
@@ -27,7 +29,8 @@ namespace SteamAccCreator
             LoadSteam();
         }
 
-         HttpHandler _httpHandler = new HttpHandler();
+        private readonly HttpHandler _httpHandler = new HttpHandler();
+        private readonly FileManager _fileManager = new FileManager();
 
         private void BtnLoadSteam_Click(object sender, EventArgs e)
         {
@@ -37,10 +40,12 @@ namespace SteamAccCreator
         private async void BtnCreateAccount_Click(object sender, EventArgs e)
         {
             _alias = txtAlias.Text;
-            _password = txtPass.Text;
+            _pass = txtPass.Text;
+            _mail = txtEmail.Text;
             _status = "Creating account...";
             UpdateStatus();
 
+            //Create account using mail
             var success = _httpHandler.CreateAccount(txtEmail.Text, txtCaptcha.Text, ref _status);
             UpdateStatus();
             if (!success)
@@ -48,14 +53,16 @@ namespace SteamAccCreator
 
             //TODO Verify mail
 
+            //Check if mail is verified
             while (!_httpHandler.CheckEmailVerified(ref _status))
             {
                 UpdateStatus();
-                await Task.Delay(5000);
+                await Task.Delay(1000);
             }
             UpdateStatus();
 
-            while (!_httpHandler.CompleteSignup(_alias, _password, ref _status))
+            //Finish creation with alias & password
+            while (!_httpHandler.CompleteSignup(_alias, _pass, ref _status))
             {
                 UpdateStatus();
                 if (_status == "Password not safe enough")
@@ -66,6 +73,12 @@ namespace SteamAccCreator
                     return;
             }
             UpdateStatus();
+
+            //Write account into file
+            if (chkWriteIntoFile.Checked)
+            {
+                _fileManager.WriteIntoFile(_mail, _alias, _pass);
+            }
         }
 
 
@@ -87,11 +100,38 @@ namespace SteamAccCreator
             if (inputDialog.ShowDialog(this) == DialogResult.OK)
             {
                 if (updatePass)
-                    _password = inputDialog.txtInfo.Text;
+                    _pass = inputDialog.txtInfo.Text;
                 else
                     _alias = inputDialog.txtInfo.Text;
             }
             inputDialog.Dispose();
+        }
+
+        private void ChkRandomMail_CheckedChanged(object sender, EventArgs e)
+        {
+            chkAutoVerifyMail.Enabled = chkRandomMail.Checked;
+            chkAutoVerifyMail.Checked = chkRandomMail.Checked;
+            txtEmail.Enabled = !chkRandomMail.Checked;
+            ToggleForceWriteIntoFile();
+        }
+
+        private void ChkRandomPass_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPass.Enabled = !chkRandomPass.Checked;
+            ToggleForceWriteIntoFile();
+        }
+
+        private void ChkRandomAlias_CheckedChanged(object sender, EventArgs e)
+        {
+            txtAlias.Enabled = !chkRandomAlias.Checked;
+            ToggleForceWriteIntoFile();
+        }
+
+        private void ToggleForceWriteIntoFile()
+        {
+            var shouldForce = chkRandomMail.Checked || chkRandomPass.Checked || chkRandomAlias.Checked;
+                chkWriteIntoFile.Checked = shouldForce;
+                chkWriteIntoFile.Enabled = !shouldForce;
         }
     }
 }
