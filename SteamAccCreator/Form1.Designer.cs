@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnLoadSteam = new System.Windows.Forms.Button();
-            this.captchaBox = new System.Windows.Forms.PictureBox();
-            this.txtCaptcha = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.lblCaptcha = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblStatusInfo = new System.Windows.Forms.Label();
             this.txtAlias = new System.Windows.Forms.TextBox();
@@ -51,38 +47,10 @@
             this.chkRandomAlias = new System.Windows.Forms.CheckBox();
             this.chkRandomPass = new System.Windows.Forms.CheckBox();
             this.pnlCreation = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.captchaBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).BeginInit();
             this.pnlSettings.SuspendLayout();
             this.pnlCreation.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnLoadSteam
-            // 
-            this.btnLoadSteam.Location = new System.Drawing.Point(31, 96);
-            this.btnLoadSteam.Name = "btnLoadSteam";
-            this.btnLoadSteam.Size = new System.Drawing.Size(57, 40);
-            this.btnLoadSteam.TabIndex = 6;
-            this.btnLoadSteam.Text = "Refresh";
-            this.btnLoadSteam.UseVisualStyleBackColor = true;
-            this.btnLoadSteam.Click += new System.EventHandler(this.BtnLoadSteam_Click);
-            // 
-            // captchaBox
-            // 
-            this.captchaBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.captchaBox.Location = new System.Drawing.Point(94, 96);
-            this.captchaBox.Name = "captchaBox";
-            this.captchaBox.Size = new System.Drawing.Size(206, 40);
-            this.captchaBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.captchaBox.TabIndex = 2;
-            this.captchaBox.TabStop = false;
-            // 
-            // txtCaptcha
-            // 
-            this.txtCaptcha.Location = new System.Drawing.Point(94, 142);
-            this.txtCaptcha.Name = "txtCaptcha";
-            this.txtCaptcha.Size = new System.Drawing.Size(206, 20);
-            this.txtCaptcha.TabIndex = 4;
             // 
             // txtEmail
             // 
@@ -93,7 +61,7 @@
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.Location = new System.Drawing.Point(94, 168);
+            this.btnCreateAccount.Location = new System.Drawing.Point(94, 97);
             this.btnCreateAccount.Name = "btnCreateAccount";
             this.btnCreateAccount.Size = new System.Drawing.Size(206, 23);
             this.btnCreateAccount.TabIndex = 5;
@@ -110,19 +78,10 @@
             this.lblEmail.TabIndex = 6;
             this.lblEmail.Text = "Email:";
             // 
-            // lblCaptcha
-            // 
-            this.lblCaptcha.AutoSize = true;
-            this.lblCaptcha.Location = new System.Drawing.Point(34, 145);
-            this.lblCaptcha.Name = "lblCaptcha";
-            this.lblCaptcha.Size = new System.Drawing.Size(50, 13);
-            this.lblCaptcha.TabIndex = 7;
-            this.lblCaptcha.Text = "Captcha:";
-            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(91, 205);
+            this.lblStatus.Location = new System.Drawing.Point(96, 123);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(40, 13);
             this.lblStatus.TabIndex = 8;
@@ -131,7 +90,7 @@
             // lblStatusInfo
             // 
             this.lblStatusInfo.AutoSize = true;
-            this.lblStatusInfo.Location = new System.Drawing.Point(137, 205);
+            this.lblStatusInfo.Location = new System.Drawing.Point(142, 123);
             this.lblStatusInfo.Name = "lblStatusInfo";
             this.lblStatusInfo.Size = new System.Drawing.Size(52, 13);
             this.lblStatusInfo.TabIndex = 9;
@@ -281,21 +240,17 @@
             // pnlCreation
             // 
             this.pnlCreation.Controls.Add(this.btnCreateAccount);
-            this.pnlCreation.Controls.Add(this.btnLoadSteam);
             this.pnlCreation.Controls.Add(this.lblPass);
-            this.pnlCreation.Controls.Add(this.captchaBox);
             this.pnlCreation.Controls.Add(this.lblAlias);
-            this.pnlCreation.Controls.Add(this.txtCaptcha);
             this.pnlCreation.Controls.Add(this.txtPass);
             this.pnlCreation.Controls.Add(this.txtEmail);
             this.pnlCreation.Controls.Add(this.txtAlias);
             this.pnlCreation.Controls.Add(this.lblEmail);
             this.pnlCreation.Controls.Add(this.lblStatusInfo);
-            this.pnlCreation.Controls.Add(this.lblCaptcha);
             this.pnlCreation.Controls.Add(this.lblStatus);
             this.pnlCreation.Location = new System.Drawing.Point(15, 114);
             this.pnlCreation.Name = "pnlCreation";
-            this.pnlCreation.Size = new System.Drawing.Size(332, 235);
+            this.pnlCreation.Size = new System.Drawing.Size(332, 147);
             this.pnlCreation.TabIndex = 18;
             this.pnlCreation.TabStop = false;
             // 
@@ -303,13 +258,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 457);
+            this.ClientSize = new System.Drawing.Size(358, 268);
             this.Controls.Add(this.pnlCreation);
             this.Controls.Add(this.pnlSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
             this.Text = "Steam Account Creator";
-            ((System.ComponentModel.ISupportInitialize)(this.captchaBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).EndInit();
             this.pnlSettings.ResumeLayout(false);
             this.pnlSettings.PerformLayout();
@@ -320,13 +274,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnLoadSteam;
-        private System.Windows.Forms.PictureBox captchaBox;
-        private System.Windows.Forms.TextBox txtCaptcha;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnCreateAccount;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblCaptcha;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblStatusInfo;
         private System.Windows.Forms.TextBox txtAlias;

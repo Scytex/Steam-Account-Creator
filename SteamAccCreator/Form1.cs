@@ -22,20 +22,15 @@ namespace SteamAccCreator
         private string _alias = string.Empty;
         private string _pass = string.Empty;
         private string _mail = string.Empty;
+        private string _captcha = string.Empty;
 
         public Form1()
         {
             InitializeComponent();
-            LoadSteam();
         }
 
         private readonly HttpHandler _httpHandler = new HttpHandler();
         private readonly FileManager _fileManager = new FileManager();
-
-        private void BtnLoadSteam_Click(object sender, EventArgs e)
-        {
-            LoadSteam();
-        }
 
         private async void BtnCreateAccount_Click(object sender, EventArgs e)
         {
@@ -45,8 +40,11 @@ namespace SteamAccCreator
             _status = "Creating account...";
             UpdateStatus();
 
+            //Ask for captcha
+            ShowCaptchaDialog();
+
             //Create account using mail
-            var success = _httpHandler.CreateAccount(txtEmail.Text, txtCaptcha.Text, ref _status);
+            var success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
             UpdateStatus();
             if (!success)
                 return;
@@ -82,12 +80,6 @@ namespace SteamAccCreator
         }
 
 
-
-        private void LoadSteam()
-        {
-            captchaBox.Image = _httpHandler.GetCaptchaImage();
-        }
-
         private void UpdateStatus()
         {
             lblStatusInfo.Text = _status;
@@ -105,6 +97,16 @@ namespace SteamAccCreator
                     _alias = inputDialog.txtInfo.Text;
             }
             inputDialog.Dispose();
+        }
+
+        private void ShowCaptchaDialog()
+        {
+            var captchaDialog = new CaptchaDialog(_httpHandler);
+
+            if (captchaDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                _captcha = captchaDialog.txtCaptcha.Text;
+            }
         }
 
         private void ChkRandomMail_CheckedChanged(object sender, EventArgs e)

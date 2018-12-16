@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Web.UI.WebControls;
-using System.Windows.Forms;
 using Newtonsoft.Json;
 using RestSharp;
 using Image = System.Drawing.Image;
@@ -11,8 +9,8 @@ namespace SteamAccCreator.Web
 {
     public class HttpHandler
     {
-        RestClient _client = new RestClient();
-        RestRequest _request = new RestRequest();
+        private readonly RestClient _client = new RestClient();
+        private readonly RestRequest _request = new RestRequest();
 
         private string _captchaGid = string.Empty;
         private string _sessionId = string.Empty;
@@ -22,7 +20,6 @@ namespace SteamAccCreator.Web
         private static readonly Uri VerifyCaptchaUri = new Uri("https://store.steampowered.com/join/verifycaptcha/");
         private static readonly Uri AjaxVerifyCaptchaUri = new Uri("https://store.steampowered.com/join/ajaxverifyemail");
         private static readonly Uri AjaxCheckEmailVerifiedUri = new Uri("https://store.steampowered.com/join/ajaxcheckemailverified");
-        private static readonly Uri CompleteSignupUri = new Uri("https://store.steampowered.com/join/completesignup?creationid=");
         private static readonly Uri CheckAvailUri = new Uri("https://store.steampowered.com/join/checkavail/");
         private static readonly Uri CheckPasswordAvailUri = new Uri("https://store.steampowered.com/join/checkpasswordavail/");
         private static readonly Uri CreateAccountUri = new Uri("https://store.steampowered.com/join/createaccount/");
