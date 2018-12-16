@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RestSharp;
 using SteamAccCreator.File;
 using SteamAccCreator.Web;
 
@@ -32,7 +22,7 @@ namespace SteamAccCreator
         private readonly HttpHandler _httpHandler = new HttpHandler();
         private readonly FileManager _fileManager = new FileManager();
 
-        private async void BtnCreateAccount_Click(object sender, EventArgs e)
+        private void BtnCreateAccount_Click(object sender, EventArgs e)
         {
             _alias = txtAlias.Text;
             _pass = txtPass.Text;
@@ -42,10 +32,28 @@ namespace SteamAccCreator
 
 
             //Create account using mail
+            CreateAccount();
+
+
+            //TODO Verify mail
+            VerifyMail();
+
+            CheckIfMailIsVerified();
+            UpdateStatus();
+
+            FinishCreation();
+            UpdateStatus();
+
+            WriteAccountIntoFile();
+        }
+
+        private void CreateAccount()
+        {
             bool success;
 
             do
             {
+                //Ask for captcha
                 ShowCaptchaDialog();
                 success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
                 UpdateStatus();
@@ -55,19 +63,24 @@ namespace SteamAccCreator
                     return;
                 }
             } while (!success);
+        }
 
+        private void VerifyMail()
+        {
+            //TODO
+        }
 
-            //TODO Verify mail
-
-            //Check if mail is verified
+        private async void CheckIfMailIsVerified()
+        {
             while (!_httpHandler.CheckEmailVerified(ref _status))
             {
                 UpdateStatus();
                 await Task.Delay(1000);
             }
-            UpdateStatus();
+        }
 
-            //Finish creation with alias & password
+        private void FinishCreation()
+        {
             while (!_httpHandler.CompleteSignup(_alias, _pass, ref _status))
             {
                 UpdateStatus();
@@ -78,15 +91,15 @@ namespace SteamAccCreator
                 else
                     return;
             }
-            UpdateStatus();
+        }
 
-            //Write account into file
+        private void WriteAccountIntoFile()
+        {
             if (chkWriteIntoFile.Checked)
             {
                 _fileManager.WriteIntoFile(_mail, _alias, _pass);
             }
         }
-
 
         private void UpdateStatus()
         {
