@@ -50,6 +50,7 @@
             this.txtCaptcha.Size = new System.Drawing.Size(206, 20);
             this.txtCaptcha.TabIndex = 5;
             this.txtCaptcha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCaptcha_KeyDown);
+            this.txtCaptcha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCaptcha_KeyPress);
             // 
             // btnConfirm
             // 

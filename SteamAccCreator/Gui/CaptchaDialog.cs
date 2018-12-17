@@ -35,5 +35,10 @@ namespace SteamAccCreator.Gui
             if (e.KeyCode == Keys.Enter)
                 BtnConfirm_Click(sender, e);
         }
+
+        private void TxtCaptcha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+        }
     }
 }
