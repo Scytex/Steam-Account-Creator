@@ -1,6 +1,6 @@
-﻿namespace SteamAccCreator
+﻿namespace SteamAccCreator.Gui
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -192,6 +192,7 @@
             this.chkWriteIntoFile.TabIndex = 20;
             this.chkWriteIntoFile.Text = "Write Data Into File";
             this.chkWriteIntoFile.UseVisualStyleBackColor = true;
+            this.chkWriteIntoFile.CheckedChanged += new System.EventHandler(this.ChkWriteIntoFile_CheckedChanged);
             // 
             // chkAutoCaptcha
             // 
@@ -203,6 +204,7 @@
             this.chkAutoCaptcha.TabIndex = 19;
             this.chkAutoCaptcha.Text = "Use Captcha Service";
             this.chkAutoCaptcha.UseVisualStyleBackColor = true;
+            this.chkAutoCaptcha.CheckedChanged += new System.EventHandler(this.ChkAutoCaptcha_CheckedChanged);
             // 
             // chkAutoVerifyMail
             // 
@@ -214,6 +216,7 @@
             this.chkAutoVerifyMail.TabIndex = 19;
             this.chkAutoVerifyMail.Text = "Auto Mail Verify";
             this.chkAutoVerifyMail.UseVisualStyleBackColor = true;
+            this.chkAutoVerifyMail.CheckedChanged += new System.EventHandler(this.ChkAutoVerifyMail_CheckedChanged);
             // 
             // chkRandomAlias
             // 
@@ -318,7 +321,7 @@
             this.colStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -327,7 +330,7 @@
             this.Controls.Add(this.pnlCreation);
             this.Controls.Add(this.pnlSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Steam Account Creator";
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).EndInit();
             this.pnlSettings.ResumeLayout(false);
