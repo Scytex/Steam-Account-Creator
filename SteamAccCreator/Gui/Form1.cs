@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SteamAccCreator.File;
+using SteamAccCreator.Gui;
 using SteamAccCreator.Web;
 
 namespace SteamAccCreator
@@ -10,7 +10,7 @@ namespace SteamAccCreator
     public partial class Form1 : Form
     {
         private string _status, _alias, _enteredAlias, _pass, _mail, _captcha = string.Empty;
-        private bool _randomMail, _randomAlias, _randomPass = false;
+        private bool _randomMail, _randomAlias, _randomPass;
         private static readonly Random Random = new Random();
 
         public Form1()
@@ -43,28 +43,43 @@ namespace SteamAccCreator
                 if (_randomMail)
                     _mail = GetRandomString(12) + MailHandler.Provider;
 
+                AddToTable(_mail, _alias, _pass);
                 _status = "Creating account...";
-                UpdateStatus();
+                UpdateStatus(i, _status);
 
-                StartCreation();
+                StartCreation(i);
 
                 bool verified;
                 do
                 {
                     VerifyMail();
                     verified = CheckIfMailIsVerified();
-                    UpdateStatus();
+                    UpdateStatus(i, _status);
                     await Task.Delay(2000);
                 } while (!verified);
-                UpdateStatus();
+                UpdateStatus(i, _status);
 
-                FinishCreation();
-                UpdateStatus();
+                FinishCreation(i);
+                UpdateStatus(i, _status);
 
                 WriteAccountIntoFile();
                 _status = "Finished";
-                UpdateStatus();
+                UpdateStatus(i, _status);
             }
+        }
+
+        private void AddToTable(string mail, string alias, string pass)
+        {
+            dataAccounts.Rows.Add(new DataGridViewRow
+            {
+                Cells =
+                {
+                    new DataGridViewTextBoxCell {Value = mail},
+                    new DataGridViewTextBoxCell {Value = alias},
+                    new DataGridViewTextBoxCell {Value = pass},
+                    new DataGridViewTextBoxCell {Value = "Ready"}
+                }
+            });
         }
 
         private string GetRandomString(int length)
@@ -79,7 +94,7 @@ namespace SteamAccCreator
             return new string(stringChars);
         }
 
-        private void StartCreation()
+        private void StartCreation(int i)
         {
             bool success;
 
@@ -88,7 +103,7 @@ namespace SteamAccCreator
                 //Ask for captcha
                 ShowCaptchaDialog();
                 success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
-                UpdateStatus();
+                UpdateStatus(i, _status);
 
                 if (_status == Error.EMAIL_ERROR)
                 {
@@ -114,11 +129,11 @@ namespace SteamAccCreator
             return _httpHandler.CheckEmailVerified(ref _status);
         }
 
-        private void FinishCreation()
+        private void FinishCreation(int i)
         {
             while (!_httpHandler.CompleteSignup(_alias, _pass, ref _status))
             {
-                UpdateStatus();
+                UpdateStatus(i, _status);
                 if (_status == "Password not safe enough")
                     ShowUpdateInfoBox(true);
                 else if (_status == "Alias already in use")
@@ -136,9 +151,9 @@ namespace SteamAccCreator
             }
         }
 
-        private void UpdateStatus()
+        private void UpdateStatus(int i, string status)
         {
-            lblStatusInfo.Text = _status;
+            dataAccounts.Rows[i].Cells[3].Value = status;
         }
 
         private void ShowUpdateInfoBox(bool updatePass)
@@ -183,6 +198,10 @@ namespace SteamAccCreator
         {
             txtAlias.Enabled = !chkRandomAlias.Checked;
             ToggleForceWriteIntoFile();
+        }
+        private void ChkProxy_CheckedChanged(object sender, EventArgs e)
+        {
+            _httpHandler.UseProxy = chkProxy.Checked;
         }
 
         private void ToggleForceWriteIntoFile()

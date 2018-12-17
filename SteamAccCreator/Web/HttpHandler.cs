@@ -15,6 +15,8 @@ namespace SteamAccCreator.Web
         private string _captchaGid = string.Empty;
         private string _sessionId = string.Empty;
 
+        public bool UseProxy { get; set; }
+
         private static readonly Uri JoinUri = new Uri("https://store.steampowered.com/join/");
         private static readonly Uri CaptchaUri = new Uri("https://store.steampowered.com/login/rendercaptcha?gid=");
         private static readonly Uri VerifyCaptchaUri = new Uri("https://store.steampowered.com/join/verifycaptcha/");

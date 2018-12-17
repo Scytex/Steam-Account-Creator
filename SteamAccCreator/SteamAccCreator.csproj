@@ -52,23 +52,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaptchaDialog.cs">
+    <Compile Include="Gui\CaptchaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CaptchaDialog.Designer.cs">
+    <Compile Include="Gui\CaptchaDialog.Designer.cs">
       <DependentUpon>CaptchaDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="File\FileManager.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Gui\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Gui\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputDialog.cs">
+    <Compile Include="Gui\InputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InputDialog.Designer.cs">
+    <Compile Include="Gui\InputDialog.Designer.cs">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -76,13 +76,13 @@
     <Compile Include="Web\Error.cs" />
     <Compile Include="Web\HttpHandler.cs" />
     <Compile Include="Web\MailHandler.cs" />
-    <EmbeddedResource Include="CaptchaDialog.resx">
+    <EmbeddedResource Include="Gui\CaptchaDialog.resx">
       <DependentUpon>CaptchaDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Gui\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InputDialog.resx">
+    <EmbeddedResource Include="Gui\InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

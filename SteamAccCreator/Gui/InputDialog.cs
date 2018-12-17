@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SteamAccCreator
+namespace SteamAccCreator.Gui
 {
     public partial class InputDialog : Form
     {

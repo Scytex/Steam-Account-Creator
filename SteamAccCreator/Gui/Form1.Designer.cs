@@ -31,8 +31,6 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lblStatusInfo = new System.Windows.Forms.Label();
             this.txtAlias = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.lblAlias = new System.Windows.Forms.Label();
@@ -41,16 +39,22 @@
             this.lblAmount = new System.Windows.Forms.Label();
             this.chkRandomMail = new System.Windows.Forms.CheckBox();
             this.pnlSettings = new System.Windows.Forms.GroupBox();
+            this.chkProxy = new System.Windows.Forms.CheckBox();
             this.chkWriteIntoFile = new System.Windows.Forms.CheckBox();
             this.chkAutoCaptcha = new System.Windows.Forms.CheckBox();
             this.chkAutoVerifyMail = new System.Windows.Forms.CheckBox();
             this.chkRandomAlias = new System.Windows.Forms.CheckBox();
             this.chkRandomPass = new System.Windows.Forms.CheckBox();
             this.pnlCreation = new System.Windows.Forms.GroupBox();
-            this.chkProxy = new System.Windows.Forms.CheckBox();
+            this.dataAccounts = new System.Windows.Forms.DataGridView();
+            this.colMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAlias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPass = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).BeginInit();
             this.pnlSettings.SuspendLayout();
             this.pnlCreation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -78,24 +82,6 @@
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 6;
             this.lblEmail.Text = "Email:";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(96, 123);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(40, 13);
-            this.lblStatus.TabIndex = 8;
-            this.lblStatus.Text = "Status:";
-            // 
-            // lblStatusInfo
-            // 
-            this.lblStatusInfo.AutoSize = true;
-            this.lblStatusInfo.Location = new System.Drawing.Point(142, 123);
-            this.lblStatusInfo.Name = "lblStatusInfo";
-            this.lblStatusInfo.Size = new System.Drawing.Size(38, 13);
-            this.lblStatusInfo.TabIndex = 9;
-            this.lblStatusInfo.Text = "Ready";
             // 
             // txtAlias
             // 
@@ -185,6 +171,18 @@
             this.pnlSettings.TabStop = false;
             this.pnlSettings.Text = "Settings";
             // 
+            // chkProxy
+            // 
+            this.chkProxy.AutoSize = true;
+            this.chkProxy.Enabled = false;
+            this.chkProxy.Location = new System.Drawing.Point(200, 21);
+            this.chkProxy.Name = "chkProxy";
+            this.chkProxy.Size = new System.Drawing.Size(100, 17);
+            this.chkProxy.TabIndex = 21;
+            this.chkProxy.Text = "Use Proxylist.txt";
+            this.chkProxy.UseVisualStyleBackColor = true;
+            this.chkProxy.CheckedChanged += new System.EventHandler(this.ChkProxy_CheckedChanged);
+            // 
             // chkWriteIntoFile
             // 
             this.chkWriteIntoFile.AutoSize = true;
@@ -248,29 +246,84 @@
             this.pnlCreation.Controls.Add(this.txtEmail);
             this.pnlCreation.Controls.Add(this.txtAlias);
             this.pnlCreation.Controls.Add(this.lblEmail);
-            this.pnlCreation.Controls.Add(this.lblStatusInfo);
-            this.pnlCreation.Controls.Add(this.lblStatus);
             this.pnlCreation.Location = new System.Drawing.Point(15, 114);
             this.pnlCreation.Name = "pnlCreation";
-            this.pnlCreation.Size = new System.Drawing.Size(332, 147);
+            this.pnlCreation.Size = new System.Drawing.Size(332, 132);
             this.pnlCreation.TabIndex = 18;
             this.pnlCreation.TabStop = false;
             // 
-            // chkProxy
+            // dataAccounts
             // 
-            this.chkProxy.AutoSize = true;
-            this.chkProxy.Location = new System.Drawing.Point(200, 21);
-            this.chkProxy.Name = "chkProxy";
-            this.chkProxy.Size = new System.Drawing.Size(100, 17);
-            this.chkProxy.TabIndex = 21;
-            this.chkProxy.Text = "Use Proxylist.txt";
-            this.chkProxy.UseVisualStyleBackColor = true;
+            this.dataAccounts.AllowUserToAddRows = false;
+            this.dataAccounts.AllowUserToDeleteRows = false;
+            this.dataAccounts.AllowUserToResizeColumns = false;
+            this.dataAccounts.AllowUserToResizeRows = false;
+            this.dataAccounts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataAccounts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataAccounts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colMail,
+            this.colAlias,
+            this.colPass,
+            this.colStatus});
+            this.dataAccounts.Location = new System.Drawing.Point(364, 12);
+            this.dataAccounts.MultiSelect = false;
+            this.dataAccounts.Name = "dataAccounts";
+            this.dataAccounts.ReadOnly = true;
+            this.dataAccounts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataAccounts.RowHeadersVisible = false;
+            this.dataAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataAccounts.Size = new System.Drawing.Size(534, 234);
+            this.dataAccounts.TabIndex = 19;
+            // 
+            // colMail
+            // 
+            this.colMail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colMail.Frozen = true;
+            this.colMail.HeaderText = "Mail";
+            this.colMail.Name = "colMail";
+            this.colMail.ReadOnly = true;
+            this.colMail.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colMail.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colMail.Width = 32;
+            // 
+            // colAlias
+            // 
+            this.colAlias.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colAlias.Frozen = true;
+            this.colAlias.HeaderText = "Alias";
+            this.colAlias.Name = "colAlias";
+            this.colAlias.ReadOnly = true;
+            this.colAlias.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colAlias.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAlias.Width = 35;
+            // 
+            // colPass
+            // 
+            this.colPass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colPass.Frozen = true;
+            this.colPass.HeaderText = "Pass";
+            this.colPass.Name = "colPass";
+            this.colPass.ReadOnly = true;
+            this.colPass.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colPass.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colPass.Width = 36;
+            // 
+            // colStatus
+            // 
+            this.colStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colStatus.HeaderText = "Status";
+            this.colStatus.Name = "colStatus";
+            this.colStatus.ReadOnly = true;
+            this.colStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 268);
+            this.ClientSize = new System.Drawing.Size(910, 252);
+            this.Controls.Add(this.dataAccounts);
             this.Controls.Add(this.pnlCreation);
             this.Controls.Add(this.pnlSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -281,6 +334,7 @@
             this.pnlSettings.PerformLayout();
             this.pnlCreation.ResumeLayout(false);
             this.pnlCreation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,8 +343,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnCreateAccount;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblStatusInfo;
         private System.Windows.Forms.TextBox txtAlias;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Label lblAlias;
@@ -306,6 +358,11 @@
         private System.Windows.Forms.CheckBox chkRandomPass;
         private System.Windows.Forms.GroupBox pnlCreation;
         private System.Windows.Forms.CheckBox chkProxy;
+        private System.Windows.Forms.DataGridView dataAccounts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAlias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
     }
 }
 

@@ -1,4 +1,4 @@
-﻿namespace SteamAccCreator
+﻿namespace SteamAccCreator.Gui
 {
     partial class InputDialog
     {

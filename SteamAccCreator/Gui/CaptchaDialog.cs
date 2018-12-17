@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SteamAccCreator.Web;
 
-namespace SteamAccCreator
+namespace SteamAccCreator.Gui
 {
     public partial class CaptchaDialog : Form
     {
@@ -26,7 +19,7 @@ namespace SteamAccCreator
             boxCaptcha.Image = _httpHandler.GetCaptchaImage();
         }
 
-        private void BtnRefresh_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             LoadCaptcha();
         }
