@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using SteamAccCreator.Web;
 
@@ -6,8 +7,6 @@ namespace SteamAccCreator.Gui
 {
     public partial class MainForm : Form
     {
-        private readonly AccountCreator _accountCreator;
-
         public bool RandomMail { get; private set; }
         public bool RandomAlias { get; private set; }
         public bool RandomPass { get; private set; }
@@ -15,6 +14,8 @@ namespace SteamAccCreator.Gui
         public bool UseProxy { get; private set; }
         public bool AutoMailVerify { get; private set; }
         public bool UseCaptchaService { get; private set; }
+
+        private int _index = 0;
 
         public MainForm()
         {
@@ -25,53 +26,36 @@ namespace SteamAccCreator.Gui
         {
             for (var i = 0; i < nmbrAmountAccounts.Value; i++)
             {
-                new AccountCreator(this, txtEmail.Text, txtAlias.Text, txtPass.Text, i).Run();
+                var accCreator = new AccountCreator(this, txtEmail.Text, txtAlias.Text, txtPass.Text, _index);
+                var thread = new Thread(accCreator.Run);
+                thread.Start();
+                _index++;
             }
         }
 
         public void AddToTable(string mail, string alias, string pass)
         {
-            dataAccounts.Rows.Add(new DataGridViewRow
+            BeginInvoke(new Action(() =>
             {
-                Cells =
+                dataAccounts.Rows.Add(new DataGridViewRow
                 {
-                    new DataGridViewTextBoxCell {Value = mail},
-                    new DataGridViewTextBoxCell {Value = alias},
-                    new DataGridViewTextBoxCell {Value = pass},
-                    new DataGridViewTextBoxCell {Value = "Ready"}
-                }
-            });
+                    Cells =
+                    {
+                        new DataGridViewTextBoxCell {Value = mail},
+                        new DataGridViewTextBoxCell {Value = alias},
+                        new DataGridViewTextBoxCell {Value = pass},
+                        new DataGridViewTextBoxCell {Value = "Ready"}
+                    }
+                });
+            }));
         }
 
         public void UpdateStatus(int i, string status)
         {
-            dataAccounts.Rows[i].Cells[3].Value = status;
-        }
-
-        public string ShowUpdateInfoBox(string status)
-        {
-            var inputDialog = new InputDialog(status);
-            var update = string.Empty;
-
-            if (inputDialog.ShowDialog(this) == DialogResult.OK)
+            BeginInvoke(new Action(() =>
             {
-                update = inputDialog.txtInfo.Text;
-            }
-            inputDialog.Dispose();
-            return update;
-        }
-
-        public string ShowCaptchaDialog(HttpHandler httpHandler)
-        {
-            var captchaDialog = new CaptchaDialog(httpHandler);
-            var captcha = string.Empty;
-
-            if (captchaDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                captcha = captchaDialog.txtCaptcha.Text;
-            }
-            captchaDialog.Dispose();
-            return captcha;
+                dataAccounts.Rows[i].Cells[3].Value = status;
+            }));
         }
 
         private void ChkAutoVerifyMail_CheckedChanged(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using SteamAccCreator.File;
 using SteamAccCreator.Web;
@@ -86,7 +87,7 @@ namespace SteamAccCreator.Gui
             do
             {
                 //Ask for captcha
-                _captcha = _mainForm.ShowCaptchaDialog(_httpHandler);
+                _captcha = ShowCaptchaDialog(_httpHandler);
                 success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
                 UpdateStatus();
 
@@ -122,10 +123,10 @@ namespace SteamAccCreator.Gui
                 switch (_status)
                 {
                     case Error.PASSWORD_UNSAFE:
-                        _pass = _mainForm.ShowUpdateInfoBox(_status);
+                        _pass = ShowUpdateInfoBox(_status);
                         break;
                     case Error.ALIAS_UNAVAILABLE:
-                        _alias = _mainForm.ShowUpdateInfoBox(_status);
+                        _alias = ShowUpdateInfoBox(_status);
                         break;
                     default:
                         return;
@@ -144,6 +145,32 @@ namespace SteamAccCreator.Gui
         private void UpdateStatus()
         {
             _mainForm.UpdateStatus(_index, _status);
+        }
+
+        private string ShowUpdateInfoBox(string status)
+        {
+            var inputDialog = new InputDialog(status);
+            var update = string.Empty;
+
+            if (inputDialog.ShowDialog() == DialogResult.OK)
+            {
+                update = inputDialog.txtInfo.Text;
+            }
+            inputDialog.Dispose();
+            return update;
+        }
+
+        private string ShowCaptchaDialog(HttpHandler httpHandler)
+        {
+            var captchaDialog = new CaptchaDialog(httpHandler);
+            var captcha = string.Empty;
+
+            if (captchaDialog.ShowDialog() == DialogResult.OK)
+            {
+                captcha = captchaDialog.txtCaptcha.Text;
+            }
+            captchaDialog.Dispose();
+            return captcha;
         }
     }
 }
