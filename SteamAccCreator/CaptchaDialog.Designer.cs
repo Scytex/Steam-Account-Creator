@@ -31,7 +31,7 @@
             this.boxCaptcha = new System.Windows.Forms.PictureBox();
             this.txtCaptcha = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.boxCaptcha)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +49,7 @@
             this.txtCaptcha.Name = "txtCaptcha";
             this.txtCaptcha.Size = new System.Drawing.Size(206, 20);
             this.txtCaptcha.TabIndex = 5;
+            this.txtCaptcha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCaptcha_KeyDown);
             // 
             // btnConfirm
             // 
@@ -60,25 +61,28 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
             // 
-            // button1
+            // btnRefresh
             // 
-            this.button1.Location = new System.Drawing.Point(12, 84);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnRefresh.Location = new System.Drawing.Point(12, 84);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // CaptchaDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(231, 117);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtCaptcha);
             this.Controls.Add(this.boxCaptcha);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CaptchaDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Enter Captcha";
@@ -90,7 +94,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefresh;
         public System.Windows.Forms.TextBox txtCaptcha;
         private System.Windows.Forms.PictureBox boxCaptcha;
     }

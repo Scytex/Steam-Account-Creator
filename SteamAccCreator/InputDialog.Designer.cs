@@ -48,7 +48,6 @@
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.Size = new System.Drawing.Size(170, 20);
             this.txtInfo.TabIndex = 1;
-            this.txtInfo.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // btnConfirm
             // 
@@ -76,7 +75,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Update Info";
-            this.Load += new System.EventHandler(this.InputDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -26,7 +26,7 @@ namespace SteamAccCreator
             boxCaptcha.Image = _httpHandler.GetCaptchaImage();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
             LoadCaptcha();
         }
@@ -35,6 +35,12 @@ namespace SteamAccCreator
         {
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void TxtCaptcha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                BtnConfirm_Click(sender, e);
         }
     }
 }
