@@ -47,6 +47,7 @@
             this.chkRandomAlias = new System.Windows.Forms.CheckBox();
             this.chkRandomPass = new System.Windows.Forms.CheckBox();
             this.pnlCreation = new System.Windows.Forms.GroupBox();
+            this.chkProxy = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).BeginInit();
             this.pnlSettings.SuspendLayout();
             this.pnlCreation.SuspendLayout();
@@ -92,9 +93,9 @@
             this.lblStatusInfo.AutoSize = true;
             this.lblStatusInfo.Location = new System.Drawing.Point(142, 123);
             this.lblStatusInfo.Name = "lblStatusInfo";
-            this.lblStatusInfo.Size = new System.Drawing.Size(52, 13);
+            this.lblStatusInfo.Size = new System.Drawing.Size(38, 13);
             this.lblStatusInfo.TabIndex = 9;
-            this.lblStatusInfo.Text = "Waiting...";
+            this.lblStatusInfo.Text = "Ready";
             // 
             // txtAlias
             // 
@@ -168,6 +169,7 @@
             // 
             // pnlSettings
             // 
+            this.pnlSettings.Controls.Add(this.chkProxy);
             this.pnlSettings.Controls.Add(this.chkWriteIntoFile);
             this.pnlSettings.Controls.Add(this.chkAutoCaptcha);
             this.pnlSettings.Controls.Add(this.chkAutoVerifyMail);
@@ -254,6 +256,16 @@
             this.pnlCreation.TabIndex = 18;
             this.pnlCreation.TabStop = false;
             // 
+            // chkProxy
+            // 
+            this.chkProxy.AutoSize = true;
+            this.chkProxy.Location = new System.Drawing.Point(200, 21);
+            this.chkProxy.Name = "chkProxy";
+            this.chkProxy.Size = new System.Drawing.Size(100, 17);
+            this.chkProxy.TabIndex = 21;
+            this.chkProxy.Text = "Use Proxylist.txt";
+            this.chkProxy.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +305,7 @@
         private System.Windows.Forms.CheckBox chkRandomAlias;
         private System.Windows.Forms.CheckBox chkRandomPass;
         private System.Windows.Forms.GroupBox pnlCreation;
+        private System.Windows.Forms.CheckBox chkProxy;
     }
 }
 

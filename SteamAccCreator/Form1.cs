@@ -9,11 +9,8 @@ namespace SteamAccCreator
 {
     public partial class Form1 : Form
     {
-        private string _status = string.Empty;
-        private string _alias = string.Empty;
-        private string _pass = string.Empty;
-        private string _mail = string.Empty;
-        private string _captcha = string.Empty;
+        private string _status, _alias, _enteredAlias, _pass, _mail, _captcha = string.Empty;
+        private bool _randomMail, _randomAlias, _randomPass = false;
         private static readonly Random Random = new Random();
 
         public Form1()
@@ -27,40 +24,47 @@ namespace SteamAccCreator
 
         private async void BtnCreateAccount_Click(object sender, EventArgs e)
         {
+            _randomAlias = chkRandomAlias.Checked;
+            _randomMail = chkRandomMail.Checked;
+            _randomPass = chkRandomPass.Checked;
             _alias = txtAlias.Text;
+            _enteredAlias = _alias;
             _pass = txtPass.Text;
             _mail = txtEmail.Text;
-            if (chkRandomMail.Checked)
-                _mail = GetRandomString(12) + MailHandler.Provider;
-            if (chkRandomAlias.Checked)
-                _alias = GetRandomString(12);
-            if (chkRandomPass.Checked)
-                _pass = System.Web.Security.Membership.GeneratePassword(12, 4);
 
             for (var i = 0; i < nmbrAmountAccounts.Value; i++)
             {
-                
-            }
+                if (_randomAlias)
+                    _alias = GetRandomString(12);
+                else
+                    _alias = _enteredAlias + i;
+                if (_randomPass)
+                    _pass = System.Web.Security.Membership.GeneratePassword(12, 4);
+                if (_randomMail)
+                    _mail = GetRandomString(12) + MailHandler.Provider;
 
-            _status = "Creating account...";
-            UpdateStatus();
-
-            CreateAccount();
-
-            var verified = false;
-            do
-            {
-                VerifyMail();
-                verified = CheckIfMailIsVerified();
+                _status = "Creating account...";
                 UpdateStatus();
-                await Task.Delay(2000);
-            } while (!verified);
-            UpdateStatus();
 
-            FinishCreation();
-            UpdateStatus();
+                StartCreation();
 
-            WriteAccountIntoFile();
+                bool verified;
+                do
+                {
+                    VerifyMail();
+                    verified = CheckIfMailIsVerified();
+                    UpdateStatus();
+                    await Task.Delay(2000);
+                } while (!verified);
+                UpdateStatus();
+
+                FinishCreation();
+                UpdateStatus();
+
+                WriteAccountIntoFile();
+                _status = "Finished";
+                UpdateStatus();
+            }
         }
 
         private string GetRandomString(int length)
@@ -75,7 +79,7 @@ namespace SteamAccCreator
             return new string(stringChars);
         }
 
-        private void CreateAccount()
+        private void StartCreation()
         {
             bool success;
 
