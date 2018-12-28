@@ -1,4 +1,4 @@
-﻿namespace SteamAccCreator.Gui
+namespace SteamAccCreator.Gui
 {
     partial class MainForm
     {
@@ -51,10 +51,18 @@
             this.colAlias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).BeginInit();
             this.pnlSettings.SuspendLayout();
             this.pnlCreation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -132,6 +140,7 @@
             0,
             0,
             0});
+            this.nmbrAmountAccounts.ValueChanged += new System.EventHandler(this.nmbrAmountAccounts_ValueChanged);
             // 
             // lblAmount
             // 
@@ -321,11 +330,86 @@
             this.colStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.checkBox4);
+            this.groupBox1.Controls.Add(this.checkBox7);
+            this.groupBox1.Location = new System.Drawing.Point(15, 250);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(883, 39);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "File Writing";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "User:Pass Formatting",
+            "Original Formatting"});
+            this.comboBox1.Location = new System.Drawing.Point(390, 11);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(197, 21);
+            this.comboBox1.TabIndex = 22;
+            this.comboBox1.Text = "User:Pass Formatting";
+            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(689, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "By: Scytex       Edit By: SpookedOnion";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(288, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(181, 15);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(106, 17);
+            this.checkBox4.TabIndex = 19;
+            this.checkBox4.Text = "Custom Directory";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(57, 15);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(79, 17);
+            this.checkBox7.TabIndex = 16;
+            this.checkBox7.Text = "Write Email";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 252);
+            this.ClientSize = new System.Drawing.Size(910, 297);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataAccounts);
             this.Controls.Add(this.pnlCreation);
             this.Controls.Add(this.pnlSettings);
@@ -338,6 +422,8 @@
             this.pnlCreation.ResumeLayout(false);
             this.pnlCreation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -366,6 +452,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAlias;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPass;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
