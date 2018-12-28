@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+using System;
 using System.Windows.Forms;
 using SteamAccCreator.File;
 using SteamAccCreator.Web;
@@ -40,13 +39,12 @@ namespace SteamAccCreator.Gui
             else
                 _alias = _enteredAlias + _index;
             if (_mainForm.RandomPass)
-                _pass = System.Web.Security.Membership.GeneratePassword(12, 4);
+                _pass = GetRandomString(24);
             if (_mainForm.RandomMail)
                 _mail = GetRandomString(12) + MailHandler.Provider;
 
             _mainForm.AddToTable(_mail, _alias, _pass);
             _status = "Creating account...";
-            UpdateStatus();
 
             StartCreation();
 
@@ -55,13 +53,10 @@ namespace SteamAccCreator.Gui
             {
                 VerifyMail();
                 verified = CheckIfMailIsVerified();
-                UpdateStatus();
                 await Task.Delay(2000);
             } while (!verified);
-            UpdateStatus();
 
             FinishCreation();
-            UpdateStatus();
 
             WriteAccountIntoFile();
             _status = "Finished";
@@ -89,7 +84,6 @@ namespace SteamAccCreator.Gui
                 //Ask for captcha
                 _captcha = ShowCaptchaDialog(_httpHandler);
                 success = _httpHandler.CreateAccount(_mail, _captcha, ref _status);
-                UpdateStatus();
 
                 if (_status == Error.EMAIL_ERROR)
                 {
@@ -132,13 +126,13 @@ namespace SteamAccCreator.Gui
                         return;
                 }
             }
-        }
+        }   
 
         private void WriteAccountIntoFile()
         {
             if (_mainForm.WriteIntoFile)
-            {
-                _fileManager.WriteIntoFile(_mail, _alias, _pass);
+            {          
+                _fileManager.WriteIntoFile(_mail, _mainForm.istrue, _alias, _pass, _mainForm.Path, _mainForm.comboBox1.Text);
             }
         }
 
