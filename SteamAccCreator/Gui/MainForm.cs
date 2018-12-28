@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Windows.Forms;
-using SteamAccCreator.Web;
 
 namespace SteamAccCreator.Gui
 {
@@ -24,12 +23,35 @@ namespace SteamAccCreator.Gui
 
         private void BtnCreateAccount_Click(object sender, EventArgs e)
         {
-            for (var i = 0; i < nmbrAmountAccounts.Value; i++)
+            if (nmbrAmountAccounts.Value > 100)
             {
-                var accCreator = new AccountCreator(this, txtEmail.Text, txtAlias.Text, txtPass.Text, _index);
-                var thread = new Thread(accCreator.Run);
-                thread.Start();
-                _index++;
+                nmbrAmountAccounts.Value = 100;
+            }
+
+            if (checkBox4.Checked == true)
+            {
+                if (file != null)
+                {
+                    for (var i = 0; i < nmbrAmountAccounts.Value; i++)
+                    {
+                        var accCreator = new AccountCreator(this, txtEmail.Text, txtAlias.Text, txtPass.Text, _index);
+                        var thread = new Thread(accCreator.Run);
+                        thread.Start();
+                        _index++;
+                    }
+                } else
+                {
+                    MessageBox.Show("Please Select a File to Edit. :)");
+                }
+            } else
+            {
+                for (var i = 0; i < nmbrAmountAccounts.Value; i++)
+                {
+                    var accCreator = new AccountCreator(this, txtEmail.Text, txtAlias.Text, txtPass.Text, _index);
+                    var thread = new Thread(accCreator.Run);
+                    thread.Start();
+                    _index++;
+                }
             }
         }
 
@@ -70,7 +92,7 @@ namespace SteamAccCreator.Gui
 
         private void ChkAutoCaptcha_CheckedChanged(object sender, EventArgs e)
         {
-            UseCaptchaService = chkAutoCaptcha.Checked;
+            UseCaptchaService = chkAutoCaptcha.Checked; 
         }
 
         private void ChkRandomMail_CheckedChanged(object sender, EventArgs e)
@@ -108,6 +130,68 @@ namespace SteamAccCreator.Gui
             var shouldForce = chkRandomMail.Checked || chkRandomPass.Checked || chkRandomAlias.Checked;
             chkWriteIntoFile.Checked = shouldForce;
             chkWriteIntoFile.Enabled = !shouldForce;
+        }
+
+        public bool istrue = false;
+        public string Path = @"accounts.txt";
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked == true)
+            {
+                button1.Enabled = true;
+                Path = file;
+            } else
+            {
+                button1.Enabled = false;
+                Path = @"accounts.txt";
+            }
+        }
+
+        public string file = null;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Text File|*.txt";
+            openFileDialog1.Title = "Save Files To";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                file = openFileDialog1.FileName;
+            }
+        }
+
+        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox7.Checked == true)
+            {
+                istrue = true;
+            } else
+            {
+                istrue = false;
+            }
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Path = openFileDialog1.FileName;
+            MessageBox.Show(Path);
+        }
+
+        private void nmbrAmountAccounts_ValueChanged(object sender, EventArgs e)
+        {
+            if (nmbrAmountAccounts.Value > 100)
+            {
+                nmbrAmountAccounts.Value = 100;
+            }
+        }
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != "User:Pass Formatting" && comboBox1.Text != "Original Formatting")
+            {
+                comboBox1.Text = "User:Pass Formatting";
+            }
         }
     }
 }
