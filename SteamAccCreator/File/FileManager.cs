@@ -7,14 +7,14 @@ namespace SteamAccCreator.File
 {
     public class FileManager
     {
-        public void WriteIntoFile(string mail, bool writeMail, string alias, string pass, string path, string style)
+        public void WriteIntoFile(string mail, bool writeMail, string alias, string pass, string path, bool original)
         {
 
             Task.Delay(2000).Wait();
 
             using (var writer = new StreamWriter(path, true))
             {
-                if (style == "User:Pass Formatting")
+                if (original == true)
                 {
                     if (writeMail == false)
                     {
@@ -24,7 +24,7 @@ namespace SteamAccCreator.File
                     {
                         writer.WriteLine(alias + ":" + pass + ":" + mail);
                     }
-                } else if (style == "Original Formatting")
+                } else if (original == false)
                 {
                     if (writeMail == false)
                     {
