@@ -1,8 +1,10 @@
 # Steam-Account-Creator
 Multi-threaded Steam Account Generator
 
-This is a fork of Scytex's Steam Account Creator.
-All Credit goes to him.
+Credit:
+Scytex
+Agentsix1
+SpookedOnion
 
 To-Do:
 1. Update the GUI
@@ -11,4 +13,4 @@ To-Do:
 
 ~~4. Proxy usage.~~
 
-![alt text](https://cdn.discordapp.com/attachments/527111792040607755/528263492042620930/unknown.png)
+![alt text](https://i.imgur.com/zkx3YzM.png)
