@@ -1,16 +1,21 @@
-﻿using System;
+using System;
 using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using RestSharp;
+using SteamAccCreator.Gui;
 using Image = System.Drawing.Image;
 
 namespace SteamAccCreator.Web
 {
     public class HttpHandler
     {
+
         private readonly RestClient _client = new RestClient();
+
         private readonly RestRequest _request = new RestRequest();
+        private readonly MainForm _formreq = new MainForm();
 
         private string _captchaGid = string.Empty;
         private string _sessionId = string.Empty;
@@ -51,6 +56,10 @@ namespace SteamAccCreator.Web
         public bool CreateAccount(string email, string captchaText, ref string status)
         {
             _client.BaseUrl = VerifyCaptchaUri;
+            if (_formreq.proxy == true)
+            {
+                _client.Proxy = new WebProxy(_formreq.proxyval, _formreq.proxyport);
+            }
             _request.Method = Method.POST;
             _request.AddParameter("captchagid", _captchaGid);
             _request.AddParameter("captcha_text", captchaText);
