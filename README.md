@@ -2,8 +2,8 @@
 Multi-threaded Steam Account Generator
 
 Credit:
-Scytex
-Agentsix1
+Scytex,
+Agentsix1,
 SpookedOnion
 
 To-Do:
