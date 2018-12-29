@@ -132,7 +132,7 @@ namespace SteamAccCreator.Gui
         {
             if (_mainForm.WriteIntoFile)
             {          
-                _fileManager.WriteIntoFile(_mail, _mainForm.istrue, _alias, _pass, _mainForm.Path, _mainForm.comboBox1.Text);
+                _fileManager.WriteIntoFile(_mail, _mainForm.istrue, _alias, _pass, _mainForm.Path, _mainForm.original);
             }
         }
 
