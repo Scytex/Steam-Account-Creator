@@ -1,4 +1,6 @@
 using System;
+using System.Net;
+using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -21,11 +23,25 @@ namespace SteamAccCreator.Gui
             InitializeComponent();
         }
 
-        private void BtnCreateAccount_Click(object sender, EventArgs e)
+        public string proxyval = null;
+        public int proxyport = 0;
+        public bool proxy = false;
+
+        public void BtnCreateAccount_Click(object sender, EventArgs e)
         {
             if (nmbrAmountAccounts.Value > 100)
             {
                 nmbrAmountAccounts.Value = 100;
+            }
+
+            if (checkBox1.Checked == true)
+            {
+                proxyval = textBox1.Text;
+                proxyport = Convert.ToInt16(textBox2.Text);
+                proxy = true;
+            } else
+            {
+                proxy = false;
             }
 
             if (checkBox4.Checked == true)
@@ -90,11 +106,6 @@ namespace SteamAccCreator.Gui
             WriteIntoFile = chkWriteIntoFile.Checked;
         }
 
-        private void ChkAutoCaptcha_CheckedChanged(object sender, EventArgs e)
-        {
-            UseCaptchaService = chkAutoCaptcha.Checked; 
-        }
-
         private void ChkRandomMail_CheckedChanged(object sender, EventArgs e)
         {
             var state = chkRandomMail.Checked;
@@ -119,10 +130,6 @@ namespace SteamAccCreator.Gui
             txtAlias.Enabled = !state;
             RandomAlias = state;
             ToggleForceWriteIntoFile();
-        }
-        private void ChkProxy_CheckedChanged(object sender, EventArgs e)
-        {
-            UseProxy = chkProxy.Checked;
         }
 
         private void ToggleForceWriteIntoFile()
@@ -191,6 +198,72 @@ namespace SteamAccCreator.Gui
             if (comboBox1.Text != "User:Pass Formatting" && comboBox1.Text != "Original Formatting")
             {
                 comboBox1.Text = "User:Pass Formatting";
+            }
+
+            if (comboBox1.Text == "User:Pass Formatting")
+            {
+                original = true;
+            }
+            else if (comboBox1.Text == "Original Formatting")
+            {
+                original = false;
+            }
+        }
+
+        public bool original = true;
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                textBox1.Enabled = true;
+                textBox2.Enabled = true;
+            } else
+            {
+                textBox1.Enabled = false;
+                textBox2.Enabled = false;
+            }
+        }
+
+        public static bool SocketConnect(string host, int port)
+        {
+            var is_success = false;
+            try
+            {
+                var connsock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                connsock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, 200);
+                Thread.Sleep(500);
+                var hip = IPAddress.Parse(host);
+                var ipep = new IPEndPoint(hip, port);
+                connsock.Connect(ipep);
+                if (connsock.Connected)
+                {
+                    is_success = true;
+                }
+                connsock.Close();
+            }
+            catch (Exception)
+            {
+                is_success = false;
+            }
+            return is_success;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                if (textBox1.Text != "" && textBox2.Text != "")
+                {
+                    if (SocketConnect(textBox1.Text, Convert.ToInt16(textBox2.Text)) == true)
+                    {
+                        label1.Text = "Working: True";
+                    }
+                    else
+                    {
+                        label1.Text = "Working: False";
+                    }
+                }
             }
         }
     }
