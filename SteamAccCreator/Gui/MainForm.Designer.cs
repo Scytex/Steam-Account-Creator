@@ -39,9 +39,7 @@ namespace SteamAccCreator.Gui
             this.lblAmount = new System.Windows.Forms.Label();
             this.chkRandomMail = new System.Windows.Forms.CheckBox();
             this.pnlSettings = new System.Windows.Forms.GroupBox();
-            this.chkProxy = new System.Windows.Forms.CheckBox();
             this.chkWriteIntoFile = new System.Windows.Forms.CheckBox();
-            this.chkAutoCaptcha = new System.Windows.Forms.CheckBox();
             this.chkAutoVerifyMail = new System.Windows.Forms.CheckBox();
             this.chkRandomAlias = new System.Windows.Forms.CheckBox();
             this.chkRandomPass = new System.Windows.Forms.CheckBox();
@@ -53,16 +51,23 @@ namespace SteamAccCreator.Gui
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).BeginInit();
             this.pnlSettings.SuspendLayout();
             this.pnlCreation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -126,7 +131,7 @@ namespace SteamAccCreator.Gui
             // 
             // nmbrAmountAccounts
             // 
-            this.nmbrAmountAccounts.Location = new System.Drawing.Point(53, 19);
+            this.nmbrAmountAccounts.Location = new System.Drawing.Point(97, 19);
             this.nmbrAmountAccounts.Minimum = new decimal(new int[] {
             1,
             0,
@@ -145,7 +150,7 @@ namespace SteamAccCreator.Gui
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(6, 21);
+            this.lblAmount.Location = new System.Drawing.Point(50, 21);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(41, 13);
             this.lblAmount.TabIndex = 15;
@@ -154,7 +159,7 @@ namespace SteamAccCreator.Gui
             // chkRandomMail
             // 
             this.chkRandomMail.AutoSize = true;
-            this.chkRandomMail.Location = new System.Drawing.Point(9, 45);
+            this.chkRandomMail.Location = new System.Drawing.Point(53, 45);
             this.chkRandomMail.Name = "chkRandomMail";
             this.chkRandomMail.Size = new System.Drawing.Size(88, 17);
             this.chkRandomMail.TabIndex = 16;
@@ -164,9 +169,7 @@ namespace SteamAccCreator.Gui
             // 
             // pnlSettings
             // 
-            this.pnlSettings.Controls.Add(this.chkProxy);
             this.pnlSettings.Controls.Add(this.chkWriteIntoFile);
-            this.pnlSettings.Controls.Add(this.chkAutoCaptcha);
             this.pnlSettings.Controls.Add(this.chkAutoVerifyMail);
             this.pnlSettings.Controls.Add(this.chkRandomAlias);
             this.pnlSettings.Controls.Add(this.chkRandomPass);
@@ -180,22 +183,10 @@ namespace SteamAccCreator.Gui
             this.pnlSettings.TabStop = false;
             this.pnlSettings.Text = "Settings";
             // 
-            // chkProxy
-            // 
-            this.chkProxy.AutoSize = true;
-            this.chkProxy.Enabled = false;
-            this.chkProxy.Location = new System.Drawing.Point(200, 21);
-            this.chkProxy.Name = "chkProxy";
-            this.chkProxy.Size = new System.Drawing.Size(100, 17);
-            this.chkProxy.TabIndex = 21;
-            this.chkProxy.Text = "Use Proxylist.txt";
-            this.chkProxy.UseVisualStyleBackColor = true;
-            this.chkProxy.CheckedChanged += new System.EventHandler(this.ChkProxy_CheckedChanged);
-            // 
             // chkWriteIntoFile
             // 
             this.chkWriteIntoFile.AutoSize = true;
-            this.chkWriteIntoFile.Location = new System.Drawing.Point(200, 68);
+            this.chkWriteIntoFile.Location = new System.Drawing.Point(159, 19);
             this.chkWriteIntoFile.Name = "chkWriteIntoFile";
             this.chkWriteIntoFile.Size = new System.Drawing.Size(117, 17);
             this.chkWriteIntoFile.TabIndex = 20;
@@ -203,23 +194,11 @@ namespace SteamAccCreator.Gui
             this.chkWriteIntoFile.UseVisualStyleBackColor = true;
             this.chkWriteIntoFile.CheckedChanged += new System.EventHandler(this.ChkWriteIntoFile_CheckedChanged);
             // 
-            // chkAutoCaptcha
-            // 
-            this.chkAutoCaptcha.AutoSize = true;
-            this.chkAutoCaptcha.Enabled = false;
-            this.chkAutoCaptcha.Location = new System.Drawing.Point(200, 45);
-            this.chkAutoCaptcha.Name = "chkAutoCaptcha";
-            this.chkAutoCaptcha.Size = new System.Drawing.Size(127, 17);
-            this.chkAutoCaptcha.TabIndex = 19;
-            this.chkAutoCaptcha.Text = "Use Captcha Service";
-            this.chkAutoCaptcha.UseVisualStyleBackColor = true;
-            this.chkAutoCaptcha.CheckedChanged += new System.EventHandler(this.ChkAutoCaptcha_CheckedChanged);
-            // 
             // chkAutoVerifyMail
             // 
             this.chkAutoVerifyMail.AutoSize = true;
             this.chkAutoVerifyMail.Enabled = false;
-            this.chkAutoVerifyMail.Location = new System.Drawing.Point(103, 45);
+            this.chkAutoVerifyMail.Location = new System.Drawing.Point(159, 45);
             this.chkAutoVerifyMail.Name = "chkAutoVerifyMail";
             this.chkAutoVerifyMail.Size = new System.Drawing.Size(99, 17);
             this.chkAutoVerifyMail.TabIndex = 19;
@@ -230,7 +209,7 @@ namespace SteamAccCreator.Gui
             // chkRandomAlias
             // 
             this.chkRandomAlias.AutoSize = true;
-            this.chkRandomAlias.Location = new System.Drawing.Point(103, 68);
+            this.chkRandomAlias.Location = new System.Drawing.Point(159, 68);
             this.chkRandomAlias.Name = "chkRandomAlias";
             this.chkRandomAlias.Size = new System.Drawing.Size(91, 17);
             this.chkRandomAlias.TabIndex = 18;
@@ -241,7 +220,7 @@ namespace SteamAccCreator.Gui
             // chkRandomPass
             // 
             this.chkRandomPass.AutoSize = true;
-            this.chkRandomPass.Location = new System.Drawing.Point(9, 68);
+            this.chkRandomPass.Location = new System.Drawing.Point(53, 68);
             this.chkRandomPass.Name = "chkRandomPass";
             this.chkRandomPass.Size = new System.Drawing.Size(92, 17);
             this.chkRandomPass.TabIndex = 18;
@@ -333,7 +312,6 @@ namespace SteamAccCreator.Gui
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.checkBox4);
             this.groupBox1.Controls.Add(this.checkBox7);
@@ -356,15 +334,6 @@ namespace SteamAccCreator.Gui
             this.comboBox1.TabIndex = 22;
             this.comboBox1.Text = "User:Pass Formatting";
             this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(689, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "By: Scytex       Edit By: SpookedOnion";
             // 
             // button1
             // 
@@ -404,11 +373,85 @@ namespace SteamAccCreator.Gui
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Location = new System.Drawing.Point(15, 288);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(883, 42);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Proxy Support";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(390, 15);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(40, 22);
+            this.button2.TabIndex = 27;
+            this.button2.Text = "Test";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(316, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Working: ?";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(264, 16);
+            this.textBox2.MaxLength = 6;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(49, 20);
+            this.textBox2.TabIndex = 24;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(150, 16);
+            this.textBox1.MaxLength = 15;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(108, 20);
+            this.textBox1.TabIndex = 23;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(57, 18);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(92, 17);
+            this.checkBox1.TabIndex = 22;
+            this.checkBox1.Text = "Proxy Support";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(689, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(188, 26);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "By: Scytex       Edit By: SpookedOnion\r\n                                       ag" +
+    "entsix1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 297);
+            this.ClientSize = new System.Drawing.Size(910, 336);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataAccounts);
             this.Controls.Add(this.pnlCreation);
@@ -424,6 +467,8 @@ namespace SteamAccCreator.Gui
             ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -441,12 +486,10 @@ namespace SteamAccCreator.Gui
         private System.Windows.Forms.CheckBox chkRandomMail;
         private System.Windows.Forms.GroupBox pnlSettings;
         private System.Windows.Forms.CheckBox chkWriteIntoFile;
-        private System.Windows.Forms.CheckBox chkAutoCaptcha;
         private System.Windows.Forms.CheckBox chkAutoVerifyMail;
         private System.Windows.Forms.CheckBox chkRandomAlias;
         private System.Windows.Forms.CheckBox chkRandomPass;
         private System.Windows.Forms.GroupBox pnlCreation;
-        private System.Windows.Forms.CheckBox chkProxy;
         private System.Windows.Forms.DataGridView dataAccounts;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMail;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAlias;
@@ -458,7 +501,13 @@ namespace SteamAccCreator.Gui
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         public System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
