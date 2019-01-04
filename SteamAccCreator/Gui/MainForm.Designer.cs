@@ -28,6 +28,7 @@ namespace SteamAccCreator.Gui
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnCreateAccount = new System.Windows.Forms.Button();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -62,26 +63,35 @@ namespace SteamAccCreator.Gui
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).BeginInit();
             this.pnlSettings.SuspendLayout();
             this.pnlCreation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataAccounts)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtEmail
             // 
+            this.txtEmail.BackColor = System.Drawing.Color.Black;
+            this.txtEmail.ForeColor = System.Drawing.Color.White;
             this.txtEmail.Location = new System.Drawing.Point(94, 19);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(206, 20);
+            this.txtEmail.Size = new System.Drawing.Size(285, 20);
             this.txtEmail.TabIndex = 1;
             // 
             // btnCreateAccount
             // 
-            this.btnCreateAccount.Location = new System.Drawing.Point(94, 97);
+            this.btnCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateAccount.Location = new System.Drawing.Point(168, 97);
             this.btnCreateAccount.Name = "btnCreateAccount";
-            this.btnCreateAccount.Size = new System.Drawing.Size(206, 23);
+            this.btnCreateAccount.Size = new System.Drawing.Size(161, 23);
             this.btnCreateAccount.TabIndex = 5;
             this.btnCreateAccount.Text = "Create Account";
             this.btnCreateAccount.UseVisualStyleBackColor = true;
@@ -98,17 +108,21 @@ namespace SteamAccCreator.Gui
             // 
             // txtAlias
             // 
+            this.txtAlias.BackColor = System.Drawing.Color.Black;
+            this.txtAlias.ForeColor = System.Drawing.Color.White;
             this.txtAlias.Location = new System.Drawing.Point(94, 45);
             this.txtAlias.Name = "txtAlias";
-            this.txtAlias.Size = new System.Drawing.Size(206, 20);
+            this.txtAlias.Size = new System.Drawing.Size(285, 20);
             this.txtAlias.TabIndex = 2;
             // 
             // txtPass
             // 
+            this.txtPass.BackColor = System.Drawing.Color.Black;
+            this.txtPass.ForeColor = System.Drawing.Color.White;
             this.txtPass.Location = new System.Drawing.Point(94, 71);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '•';
-            this.txtPass.Size = new System.Drawing.Size(206, 20);
+            this.txtPass.Size = new System.Drawing.Size(285, 20);
             this.txtPass.TabIndex = 3;
             // 
             // lblAlias
@@ -131,14 +145,16 @@ namespace SteamAccCreator.Gui
             // 
             // nmbrAmountAccounts
             // 
-            this.nmbrAmountAccounts.Location = new System.Drawing.Point(97, 19);
+            this.nmbrAmountAccounts.BackColor = System.Drawing.Color.Black;
+            this.nmbrAmountAccounts.ForeColor = System.Drawing.Color.White;
+            this.nmbrAmountAccounts.Location = new System.Drawing.Point(306, 41);
             this.nmbrAmountAccounts.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nmbrAmountAccounts.Name = "nmbrAmountAccounts";
-            this.nmbrAmountAccounts.Size = new System.Drawing.Size(41, 20);
+            this.nmbrAmountAccounts.Size = new System.Drawing.Size(48, 20);
             this.nmbrAmountAccounts.TabIndex = 14;
             this.nmbrAmountAccounts.Value = new decimal(new int[] {
             1,
@@ -150,7 +166,7 @@ namespace SteamAccCreator.Gui
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
-            this.lblAmount.Location = new System.Drawing.Point(50, 21);
+            this.lblAmount.Location = new System.Drawing.Point(259, 43);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(41, 13);
             this.lblAmount.TabIndex = 15;
@@ -159,7 +175,7 @@ namespace SteamAccCreator.Gui
             // chkRandomMail
             // 
             this.chkRandomMail.AutoSize = true;
-            this.chkRandomMail.Location = new System.Drawing.Point(53, 45);
+            this.chkRandomMail.Location = new System.Drawing.Point(48, 43);
             this.chkRandomMail.Name = "chkRandomMail";
             this.chkRandomMail.Size = new System.Drawing.Size(88, 17);
             this.chkRandomMail.TabIndex = 16;
@@ -169,6 +185,7 @@ namespace SteamAccCreator.Gui
             // 
             // pnlSettings
             // 
+            this.pnlSettings.BackColor = System.Drawing.Color.Black;
             this.pnlSettings.Controls.Add(this.chkWriteIntoFile);
             this.pnlSettings.Controls.Add(this.chkAutoVerifyMail);
             this.pnlSettings.Controls.Add(this.chkRandomAlias);
@@ -176,9 +193,10 @@ namespace SteamAccCreator.Gui
             this.pnlSettings.Controls.Add(this.nmbrAmountAccounts);
             this.pnlSettings.Controls.Add(this.chkRandomMail);
             this.pnlSettings.Controls.Add(this.lblAmount);
-            this.pnlSettings.Location = new System.Drawing.Point(15, 12);
+            this.pnlSettings.ForeColor = System.Drawing.Color.White;
+            this.pnlSettings.Location = new System.Drawing.Point(15, 28);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(332, 96);
+            this.pnlSettings.Size = new System.Drawing.Size(448, 96);
             this.pnlSettings.TabIndex = 17;
             this.pnlSettings.TabStop = false;
             this.pnlSettings.Text = "Settings";
@@ -186,7 +204,7 @@ namespace SteamAccCreator.Gui
             // chkWriteIntoFile
             // 
             this.chkWriteIntoFile.AutoSize = true;
-            this.chkWriteIntoFile.Location = new System.Drawing.Point(159, 19);
+            this.chkWriteIntoFile.Location = new System.Drawing.Point(262, 66);
             this.chkWriteIntoFile.Name = "chkWriteIntoFile";
             this.chkWriteIntoFile.Size = new System.Drawing.Size(117, 17);
             this.chkWriteIntoFile.TabIndex = 20;
@@ -198,7 +216,7 @@ namespace SteamAccCreator.Gui
             // 
             this.chkAutoVerifyMail.AutoSize = true;
             this.chkAutoVerifyMail.Enabled = false;
-            this.chkAutoVerifyMail.Location = new System.Drawing.Point(159, 45);
+            this.chkAutoVerifyMail.Location = new System.Drawing.Point(154, 43);
             this.chkAutoVerifyMail.Name = "chkAutoVerifyMail";
             this.chkAutoVerifyMail.Size = new System.Drawing.Size(99, 17);
             this.chkAutoVerifyMail.TabIndex = 19;
@@ -209,7 +227,7 @@ namespace SteamAccCreator.Gui
             // chkRandomAlias
             // 
             this.chkRandomAlias.AutoSize = true;
-            this.chkRandomAlias.Location = new System.Drawing.Point(159, 68);
+            this.chkRandomAlias.Location = new System.Drawing.Point(154, 66);
             this.chkRandomAlias.Name = "chkRandomAlias";
             this.chkRandomAlias.Size = new System.Drawing.Size(91, 17);
             this.chkRandomAlias.TabIndex = 18;
@@ -220,7 +238,7 @@ namespace SteamAccCreator.Gui
             // chkRandomPass
             // 
             this.chkRandomPass.AutoSize = true;
-            this.chkRandomPass.Location = new System.Drawing.Point(53, 68);
+            this.chkRandomPass.Location = new System.Drawing.Point(48, 66);
             this.chkRandomPass.Name = "chkRandomPass";
             this.chkRandomPass.Size = new System.Drawing.Size(92, 17);
             this.chkRandomPass.TabIndex = 18;
@@ -230,6 +248,7 @@ namespace SteamAccCreator.Gui
             // 
             // pnlCreation
             // 
+            this.pnlCreation.BackColor = System.Drawing.Color.Black;
             this.pnlCreation.Controls.Add(this.btnCreateAccount);
             this.pnlCreation.Controls.Add(this.lblPass);
             this.pnlCreation.Controls.Add(this.lblAlias);
@@ -237,9 +256,10 @@ namespace SteamAccCreator.Gui
             this.pnlCreation.Controls.Add(this.txtEmail);
             this.pnlCreation.Controls.Add(this.txtAlias);
             this.pnlCreation.Controls.Add(this.lblEmail);
-            this.pnlCreation.Location = new System.Drawing.Point(15, 114);
+            this.pnlCreation.ForeColor = System.Drawing.Color.White;
+            this.pnlCreation.Location = new System.Drawing.Point(15, 130);
             this.pnlCreation.Name = "pnlCreation";
-            this.pnlCreation.Size = new System.Drawing.Size(332, 132);
+            this.pnlCreation.Size = new System.Drawing.Size(448, 132);
             this.pnlCreation.TabIndex = 18;
             this.pnlCreation.TabStop = false;
             // 
@@ -249,6 +269,7 @@ namespace SteamAccCreator.Gui
             this.dataAccounts.AllowUserToDeleteRows = false;
             this.dataAccounts.AllowUserToResizeColumns = false;
             this.dataAccounts.AllowUserToResizeRows = false;
+            this.dataAccounts.BackgroundColor = System.Drawing.Color.Black;
             this.dataAccounts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataAccounts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -257,14 +278,15 @@ namespace SteamAccCreator.Gui
             this.colAlias,
             this.colPass,
             this.colStatus});
-            this.dataAccounts.Location = new System.Drawing.Point(364, 12);
+            this.dataAccounts.GridColor = System.Drawing.Color.Black;
+            this.dataAccounts.Location = new System.Drawing.Point(483, 32);
             this.dataAccounts.MultiSelect = false;
             this.dataAccounts.Name = "dataAccounts";
             this.dataAccounts.ReadOnly = true;
             this.dataAccounts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataAccounts.RowHeadersVisible = false;
             this.dataAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataAccounts.Size = new System.Drawing.Size(534, 234);
+            this.dataAccounts.Size = new System.Drawing.Size(414, 387);
             this.dataAccounts.TabIndex = 19;
             // 
             // colMail
@@ -311,26 +333,30 @@ namespace SteamAccCreator.Gui
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Black;
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.checkBox4);
             this.groupBox1.Controls.Add(this.checkBox7);
-            this.groupBox1.Location = new System.Drawing.Point(15, 250);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(15, 266);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(883, 39);
+            this.groupBox1.Size = new System.Drawing.Size(448, 71);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "File Writing";
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.Color.Black;
+            this.comboBox1.ForeColor = System.Drawing.Color.White;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "User:Pass Formatting",
             "Original Formatting"});
-            this.comboBox1.Location = new System.Drawing.Point(390, 11);
+            this.comboBox1.Location = new System.Drawing.Point(57, 38);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 21);
+            this.comboBox1.Size = new System.Drawing.Size(256, 21);
             this.comboBox1.TabIndex = 22;
             this.comboBox1.Text = "User:Pass Formatting";
             this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
@@ -375,22 +401,25 @@ namespace SteamAccCreator.Gui
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Black;
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(15, 288);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
+            this.groupBox2.Location = new System.Drawing.Point(15, 343);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(883, 42);
+            this.groupBox2.Size = new System.Drawing.Size(448, 76);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Proxy Support";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(390, 15);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(369, 15);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 22);
             this.button2.TabIndex = 27;
@@ -401,7 +430,7 @@ namespace SteamAccCreator.Gui
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(316, 19);
+            this.label1.Location = new System.Drawing.Point(295, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 26;
@@ -409,8 +438,10 @@ namespace SteamAccCreator.Gui
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.Black;
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(264, 16);
+            this.textBox2.ForeColor = System.Drawing.Color.White;
+            this.textBox2.Location = new System.Drawing.Point(243, 16);
             this.textBox2.MaxLength = 6;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(49, 20);
@@ -418,8 +449,10 @@ namespace SteamAccCreator.Gui
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.Black;
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(150, 16);
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(129, 16);
             this.textBox1.MaxLength = 15;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(108, 20);
@@ -428,7 +461,7 @@ namespace SteamAccCreator.Gui
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(57, 18);
+            this.checkBox1.Location = new System.Drawing.Point(36, 18);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(92, 17);
             this.checkBox1.TabIndex = 22;
@@ -439,24 +472,77 @@ namespace SteamAccCreator.Gui
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(689, 10);
+            this.label2.Location = new System.Drawing.Point(94, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(188, 26);
             this.label2.TabIndex = 21;
             this.label2.Text = "By: Scytex       Edit By: SpookedOnion\r\n                                       ag" +
     "entsix1";
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(909, 2);
+            this.panel1.TabIndex = 22;
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(909, 32);
+            this.panel2.TabIndex = 23;
+            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button3
+            // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(880, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(26, 24);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "X";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(848, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(26, 24);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "_";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 336);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(909, 427);
+            this.Controls.Add(this.dataAccounts);
+            this.Controls.Add(this.pnlSettings);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataAccounts);
             this.Controls.Add(this.pnlCreation);
-            this.Controls.Add(this.pnlSettings);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "Steam Account Creator";
             ((System.ComponentModel.ISupportInitialize)(this.nmbrAmountAccounts)).EndInit();
@@ -469,6 +555,7 @@ namespace SteamAccCreator.Gui
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -508,6 +595,11 @@ namespace SteamAccCreator.Gui
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
