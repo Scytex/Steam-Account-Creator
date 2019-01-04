@@ -1,22 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
+using System.Threading.Tasks;
+using SteamAccCreator.Gui;
 
 namespace SteamAccCreator.File
 {
     public class FileManager
     {
-        private const string Path = @"accounts.txt";
-
-        public void WriteIntoFile(string mail, string alias, string pass)
+        public void WriteIntoFile(string mail, bool writeMail, string alias, string pass, string path, bool original)
         {
-            using (var writer = new StreamWriter(Path, true))
+
+            Task.Delay(2000).Wait();
+
+            using (var writer = new StreamWriter(path, true))
             {
-                writer.WriteLine("Mail: \t\t" + mail);
-                writer.WriteLine("Alias: \t\t" + alias);
-                writer.WriteLine("Pass: \t\t" + pass);
-                writer.WriteLine("Creation: \t" + DateTime.Now);
-                writer.WriteLine("###########################");
+                if (original == true)
+                {
+                    if (writeMail == false)
+                    {
+                        writer.WriteLine(alias + ":" + pass);
+                    }
+                    else
+                    {
+                        writer.WriteLine(alias + ":" + pass + ":" + mail);
+                    }
+                } else if (original == false)
+                {
+                    if (writeMail == false)
+                    {
+                        writer.WriteLine("Alias: \t\t" + alias);
+                        writer.WriteLine("Pass: \t\t" + pass);
+                        writer.WriteLine("Creation: \t" + DateTime.Now);
+                        writer.WriteLine("###########################");
+                    }
+                    else
+                    {
+                        writer.WriteLine("Mail: \t\t" + mail);
+                        writer.WriteLine("Alias: \t\t" + alias);
+                        writer.WriteLine("Pass: \t\t" + pass);
+                        writer.WriteLine("Creation: \t" + DateTime.Now);
+                        writer.WriteLine("###########################");
+                    }
+                }
             }
         }
     }
